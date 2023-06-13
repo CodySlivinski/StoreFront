@@ -8,14 +8,27 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Shared\_OriginalLayout.cshtml" />
+    <Content Remove="wwwroot\assets\favicon.ico" />
+    <Content Remove="wwwroot\css\styles.css" />
+    <Content Remove="wwwroot\index.html" />
+    <Content Remove="wwwroot\js\scripts.js" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="Views\Home\Index.cshtml" />
     <None Include="Views\Home\Privacy.cshtml" />
     <None Include="Views\Shared\Error.cshtml" />
+    <None Include="Views\Shared\_OriginalLayout.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml" />
     <None Include="Views\Shared\_LoginPartial.cshtml" />
     <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
     <None Include="Views\_ViewImports.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
+    <None Include="wwwroot\assets\favicon.ico" />
+    <None Include="wwwroot\css\styles.css" />
+    <None Include="wwwroot\index.html" />
+    <None Include="wwwroot\js\scripts.js" />
   </ItemGroup>
 
   <ItemGroup>
