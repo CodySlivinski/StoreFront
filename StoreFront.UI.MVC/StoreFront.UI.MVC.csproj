@@ -9,10 +9,6 @@
 
   <ItemGroup>
     <Content Remove="Views\Shared\_OriginalLayout.cshtml" />
-    <Content Remove="wwwroot\assets\favicon.ico" />
-    <Content Remove="wwwroot\css\styles.css" />
-    <Content Remove="wwwroot\index.html" />
-    <Content Remove="wwwroot\js\scripts.js" />
   </ItemGroup>
 
   <ItemGroup>
@@ -25,10 +21,43 @@
     <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
     <None Include="Views\_ViewImports.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
-    <None Include="wwwroot\assets\favicon.ico" />
-    <None Include="wwwroot\css\styles.css" />
-    <None Include="wwwroot\index.html" />
-    <None Include="wwwroot\js\scripts.js" />
+    <None Include="wwwroot\.sass-cache\23fb10bb6531a16595cc9a8cbcaeb8f40f41ec84\style.scssc" />
+    <None Include="wwwroot\.sass-cache\23fb10bb6531a16595cc9a8cbcaeb8f40f41ec84\_mixin.scssc" />
+    <None Include="wwwroot\.sass-cache\23fb10bb6531a16595cc9a8cbcaeb8f40f41ec84\_responsive.scssc" />
+    <None Include="wwwroot\.sass-cache\23fb10bb6531a16595cc9a8cbcaeb8f40f41ec84\_theme_color.scssc" />
+    <None Include="wwwroot\.sass-cache\23fb10bb6531a16595cc9a8cbcaeb8f40f41ec84\_variables.scssc" />
+    <None Include="wwwroot\.sass-cache\997c61c8c2a2a831333fab68bc2254612bdf8817\style.scssc" />
+    <None Include="wwwroot\.sass-cache\997c61c8c2a2a831333fab68bc2254612bdf8817\_mixin.scssc" />
+    <None Include="wwwroot\.sass-cache\997c61c8c2a2a831333fab68bc2254612bdf8817\_responsive.scssc" />
+    <None Include="wwwroot\.sass-cache\997c61c8c2a2a831333fab68bc2254612bdf8817\_theme_color.scssc" />
+    <None Include="wwwroot\.sass-cache\997c61c8c2a2a831333fab68bc2254612bdf8817\_variables.scssc" />
+    <None Include="wwwroot\css\core-style.css.map" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\fonts\helveticaneue_medium-webfont.woff2" />
+    <None Include="wwwroot\fonts\helvetica_neu_bold-webfont.woff2" />
+    <None Include="wwwroot\js\active.js" />
+    <None Include="wwwroot\js\bootstrap.min.js" />
+    <None Include="wwwroot\js\classy-nav.min.js" />
+    <None Include="wwwroot\js\jquery\jquery-2.2.4.min.js" />
+    <None Include="wwwroot\js\map-active.js" />
+    <None Include="wwwroot\js\plugins.js" />
+    <None Include="wwwroot\js\popper.min.js" />
+    <None Include="wwwroot\scss\style.scss" />
+    <None Include="wwwroot\scss\_mixin.scss" />
+    <None Include="wwwroot\scss\_responsive.scss" />
+    <None Include="wwwroot\scss\_theme_color.scss" />
+    <None Include="wwwroot\scss\_variables.scss" />
+    <None Include="_Archive\.sass-cache\23fb10bb6531a16595cc9a8cbcaeb8f40f41ec84\style.scssc" />
+    <None Include="_Archive\.sass-cache\23fb10bb6531a16595cc9a8cbcaeb8f40f41ec84\_mixin.scssc" />
+    <None Include="_Archive\.sass-cache\23fb10bb6531a16595cc9a8cbcaeb8f40f41ec84\_responsive.scssc" />
+    <None Include="_Archive\.sass-cache\23fb10bb6531a16595cc9a8cbcaeb8f40f41ec84\_theme_color.scssc" />
+    <None Include="_Archive\.sass-cache\23fb10bb6531a16595cc9a8cbcaeb8f40f41ec84\_variables.scssc" />
+    <None Include="_Archive\.sass-cache\997c61c8c2a2a831333fab68bc2254612bdf8817\style.scssc" />
+    <None Include="_Archive\.sass-cache\997c61c8c2a2a831333fab68bc2254612bdf8817\_mixin.scssc" />
+    <None Include="_Archive\.sass-cache\997c61c8c2a2a831333fab68bc2254612bdf8817\_responsive.scssc" />
+    <None Include="_Archive\.sass-cache\997c61c8c2a2a831333fab68bc2254612bdf8817\_theme_color.scssc" />
+    <None Include="_Archive\.sass-cache\997c61c8c2a2a831333fab68bc2254612bdf8817\_variables.scssc" />
   </ItemGroup>
 
   <ItemGroup>
