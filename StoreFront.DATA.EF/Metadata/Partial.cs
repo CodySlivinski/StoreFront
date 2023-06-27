@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations.Schema;
 
 
 
@@ -30,7 +32,11 @@ namespace StoreFront.DATA.EF.Models//.Metadata
     #region Product
 
     [ModelMetadataType(typeof(ProductMetadata))] //This applies the metadata to the Category mo
-    public partial class Product { }
+    public partial class Product 
+    {
+        [NotMapped]    
+        public IFormFile? ProductImage { get; set; }
+    }
 
     #endregion
 

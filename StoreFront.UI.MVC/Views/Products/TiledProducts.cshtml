@@ -1,0 +1,71 @@
+﻿@model IEnumerable<StoreFront.DATA.EF.Models.Product>
+
+@{
+    ViewData["Title"] = "Tiled Products";
+}
+
+<div class="amado_product_area section-padding-100">
+    <div class="container">
+        <div class="heading_container heading_center">
+            <h1 align="center">Radioactive Roadside Roadkill Removal Products</h1>
+
+            <p align="center">
+                @if (User.IsInRole("Admin"))
+                {
+                    <span>
+                        <a asp-action="Create" class="btn btn-success">Add New Gadget</a>
+                    </span>
+                }
+                <a asp-action="Index" class="btn btn-success">Table View</a>
+            </p>
+        </div>
+
+        <div class="row">
+
+            @foreach (var item in Model)
+            {
+                <div class="col-12 col-sm-6 col-md-12 col-xl-6">
+                    <div class="single-product-wrapper">
+                        <!-- Product Image -->
+                        <div class="product-img">
+                            <a asp-action="Details" asp-route-id="@item.ProductId"
+                           asp-route-prevAction="TiledProducts">
+                                <img src="~/images/t_@item.Image" class="img-fluid"
+                                     alt="@item.Name" />
+                            </a>
+                            
+                        </div>
+
+                        <!-- Product Description -->
+                        <div class="product-description d-flex align-items-center justify-content-between">
+                            <!-- Product Meta Data -->
+                            <div class="product-meta-data">
+                                <div class="line"></div>
+                                <p class="product-price">@Html.DisplayFor(modelItem => item.Price)</p>
+                                <a asp-action="Details" asp-route-id="@item.ProductId"
+                               asp-route-prevAction="TiledProducts">
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </a>
+                            </div>
+                            <!-- Ratings & Cart -->
+                            <div class="ratings-cart text-right">
+                                <div class="ratings">
+                                    <a asp-action="AddToCart" asp-controller="ShoppingCart"
+                                   asp-route-id="@item.ProductId" class="btn btn-warning">
+                                        Add To Cart
+                                    </a>
+                                </div>
+                                <div class="cart">
+                                    <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+
+    </div>
+</div>
+

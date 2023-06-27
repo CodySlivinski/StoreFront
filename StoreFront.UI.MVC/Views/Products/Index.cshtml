@@ -1,0 +1,120 @@
+﻿@model IEnumerable<StoreFront.DATA.EF.Models.Product>
+
+@{
+    ViewData["Title"] = "Shop Products";
+}
+
+<div class="amado_product_area section-padding-100">
+    <div class="container">
+        <div class="heading_container heading_center">
+            <h1 align="center">Radioactive Roadside Roadkill Removal Products</h1>
+
+            <p align="center">
+                @if (User.IsInRole("Admin"))
+                {
+                    //The pipe delimiters (|) that were outside of the <a> tags were causing intellisense to
+                    //assume we were switching BACK to C# mode.
+                    //To make sure intellisense renders these as text and NOT c#, we can wrap everything in a <span>
+                    <span>
+                        <a asp-action="Create" class="btn btn-success">Add New Gadget</a>
+                    </span>
+                }
+                <a asp-action="TiledProducts" class="btn btn-success">Tile View</a>
+            </p>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Name)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Price)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.QuantityPerUnit)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Image)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Category)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Supplier)
+                    </th>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <th></th>
+                    }
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.ProductId"
+                                asp-route-prevAction="Index">
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.QuantityPerUnit)
+                        </td>
+                        <td>
+                            <a asp-action="Details" asp-route-id="@item.ProductId" 
+                                asp-route-prevAction="Index">
+                                <img src="~/images/t_@item.Image" class="img-fluid"
+                                    alt="@item.Description" />
+                            </a>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Category.CategoryName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Supplier.Name)
+                        </td>
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <td>
+                                <span>
+                                    <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+                                </span>
+
+                                @if (item.ProductOrders.Count() == 0)
+                                {
+                                    <span>|</span>
+                                    <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+                                }
+                                else
+                                {
+                                    <span>|</span>
+                                    <a disabled="disabled"
+                                       class="text-danger text-decoration-line-through"
+                                       title="Cannot delete this Gadget as it is referenced by an Order">
+                                        Delete
+                                    </a>
+                                }
+                            </td>
+                        }
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+        let table = new DataTable('.table');
+    </script>
+
+}

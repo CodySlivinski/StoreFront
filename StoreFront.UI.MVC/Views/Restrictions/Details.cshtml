@@ -1,0 +1,30 @@
+﻿@model StoreFront.DATA.EF.Models.Restriction
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Restriction</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.RestrictionType)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.RestrictionType)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PermitNeeded)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PermitNeeded)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.RestrictionId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
