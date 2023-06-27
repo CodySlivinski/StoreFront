@@ -14,7 +14,7 @@ namespace StoreFront.DATA.EF.Models
         public string FirstName { get; set; } = null!;
         public string LastName { get; set; } = null!;
         public string? Address { get; set; }
-        public byte[]? City { get; set; }
+        public string? City { get; set; }
         public string? Zip { get; set; }
         public string? State { get; set; }
         public string? Country { get; set; }
