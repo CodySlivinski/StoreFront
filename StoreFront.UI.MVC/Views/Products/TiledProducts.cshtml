@@ -1,4 +1,6 @@
-﻿@model IEnumerable<StoreFront.DATA.EF.Models.Product>
+﻿@model IPagedList<StoreFront.DATA.EF.Models.Product>
+@using X.PagedList.Mvc.Core
+@using X.PagedList
 
 @{
     ViewData["Title"] = "Tiled Products";
@@ -20,7 +22,37 @@
             </p>
         </div>
 
-        <div class="row">
+        <div class="row" align="center">
+
+            <div class="offset-2 col-sm-8">
+                <form asp-action="TiledProducts" method="get" >
+
+                    @*
+                    Categories Filter Dropdown List
+                    *@
+                    <label for="categoryId" class="control-label d-block text-center">Filter by Category</label>
+                    <select name="categoryId" align="center" class="form-control  text-center mb-3" asp-items="ViewBag.CategoryId">
+                        <option value="0">[Choose a Category]</option>
+                    </select>
+
+                    @*
+                    Inputs for Search Functionality
+                    *@
+                    <input name="searchTerm" class="form-control mb-3 text-center"
+                           placeholder="Search Gadgets &#128269" />
+                    <input type="submit" value="Go"
+                           class="form-control btn btn-success mb-5 text-center w-50 d-block" align="center" />
+
+                </form>
+
+                @if (ViewBag.NbrResults != null)
+                {
+                    <p class="mt-5 p-2 alert alert-warning text-center">
+                        Showing @ViewBag.NbrResults result@(ViewBag.nbrResults > 1 ? "s" : "") for '@ViewBag.SearchTerm'
+                    </p>
+                }
+
+            </div>
 
             @foreach (var item in Model)
             {
@@ -64,6 +96,25 @@
                 </div>
             }
 
+        </div>
+
+        @*
+        Paged List Pager
+        *@
+
+        <div class="row mt-5">
+            <div class="w-50 mx-auto text-center">
+                <p>
+                    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                </p>
+                <div class="w-100">
+                    @Html.PagedListPager(
+                    Model,
+                    page => Url.Action("TiledProducts",
+                    new { page, searchTerm = ViewBag.SearchTerm, categoryId = ViewBag.Category })
+                    )
+                </div>
+            </div>
         </div>
 
     </div>

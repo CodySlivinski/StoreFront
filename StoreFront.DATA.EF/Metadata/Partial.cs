@@ -64,7 +64,9 @@ namespace StoreFront.DATA.EF.Models//.Metadata
     #region UserDetail
 
     [ModelMetadataType(typeof(UserDetailMetadata))] //This applies the metadata to the Category mo
-    public partial class UserDetail { }
+    public partial class UserDetail {
+        public string FullName { get { return $"{FirstName} {LastName}"; } } 
+    }
 
     #endregion
 

@@ -4,63 +4,71 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<div class="amado_product_area section-padding-100">
+    <div class="container">
 
-<h4>Order</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="OrderId" class="control-label"></label>
-                <input asp-for="OrderId" class="form-control" />
-                <span asp-validation-for="OrderId" class="text-danger"></span>
+        <h1>Create</h1>
+
+        <h4>Order</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="OrderId" class="control-label"></label>
+                        <input asp-for="OrderId" class="form-control" />
+                        <span asp-validation-for="OrderId" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="CustomerId" class="control-label"></label>
+                        <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.CustomerId"></select>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OrderDate" class="control-label"></label>
+                        <input asp-for="OrderDate" class="form-control" />
+                        <span asp-validation-for="OrderDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ShipToName" class="control-label"></label>
+                        <input asp-for="ShipToName" class="form-control" />
+                        <span asp-validation-for="ShipToName" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ShipCity" class="control-label"></label>
+                        <input asp-for="ShipCity" class="form-control" />
+                        <span asp-validation-for="ShipCity" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ShipZip" class="control-label"></label>
+                        <input asp-for="ShipZip" class="form-control" />
+                        <span asp-validation-for="ShipZip" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ShipState" class="control-label"></label>
+                        <input asp-for="ShipState" class="form-control" />
+                        <span asp-validation-for="ShipState" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ShipCountry" class="control-label"></label>
+                        <input asp-for="ShipCountry" class="form-control" />
+                        <span asp-validation-for="ShipCountry" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
             </div>
-            <div class="form-group">
-                <label asp-for="CustomerId" class="control-label"></label>
-                <select asp-for="CustomerId" class ="form-control" asp-items="ViewBag.CustomerId"></select>
-            </div>
-            <div class="form-group">
-                <label asp-for="OrderDate" class="control-label"></label>
-                <input asp-for="OrderDate" class="form-control" />
-                <span asp-validation-for="OrderDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ShipToName" class="control-label"></label>
-                <input asp-for="ShipToName" class="form-control" />
-                <span asp-validation-for="ShipToName" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ShipCity" class="control-label"></label>
-                <input asp-for="ShipCity" class="form-control" />
-                <span asp-validation-for="ShipCity" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ShipZip" class="control-label"></label>
-                <input asp-for="ShipZip" class="form-control" />
-                <span asp-validation-for="ShipZip" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ShipState" class="control-label"></label>
-                <input asp-for="ShipState" class="form-control" />
-                <span asp-validation-for="ShipState" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ShipCountry" class="control-label"></label>
-                <input asp-for="ShipCountry" class="form-control" />
-                <span asp-validation-for="ShipCountry" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        </div>
+
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

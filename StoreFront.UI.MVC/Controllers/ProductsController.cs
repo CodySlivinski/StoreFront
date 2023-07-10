@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 using System.Drawing;
 using StoreFront.UI.MVC.Utilities;
 using Microsoft.AspNetCore.Hosting;
+using X.PagedList;
 
 namespace StoreFront.UI.MVC.Controllers
 {
@@ -35,10 +36,56 @@ namespace StoreFront.UI.MVC.Controllers
 
         //Get: Products/TiledProducts
         [AllowAnonymous]
-        public async Task<IActionResult> TiledProducts()
+        public async Task<IActionResult> TiledProducts(
+            string searchTerm, int categoryId = 0, int page = 1)
         {
-            var storeFrontContext = _context.Products.Include(p => p.Category).Include(p => p.ProductStatus).Include(p => p.Restriction).Include(p => p.Supplier);
-            return View(await storeFrontContext.ToListAsync());
+            int pageSize = 6;
+
+            var storeFrontContext = _context.Products
+                .Include(p => p.Category)
+                .Include(p => p.ProductStatus)
+                .Include(p => p.Restriction)
+                .Include(p => p.Supplier).ToList();
+            
+
+            //Category Filter
+            ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName");
+            ViewBag.Category = 0;
+
+            if (categoryId != 0)
+            {
+                storeFrontContext = storeFrontContext.Where(p => p.CategoryId == categoryId).ToList();
+
+                //Repopulate the dropdown menu with the currently selected category 
+                ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", categoryId);
+
+                //Persist the selected Category
+                ViewBag.Category = categoryId;
+            }
+
+            //Search Filter
+            if (!String.IsNullOrEmpty(searchTerm))
+            {
+                ViewBag.SearchTerm = searchTerm;
+                searchTerm = searchTerm.ToLower();
+                storeFrontContext = storeFrontContext.Where(p =>
+                p.Name.ToLower().Contains(searchTerm)
+                || p.Supplier.Name.ToLower().Contains(searchTerm)
+                || p.Category.CategoryName.ToLower().Contains(searchTerm)
+                || p.Description.ToLower().Contains(searchTerm)
+                || p.Restriction.PermitNeeded.ToLower().Contains(searchTerm)).ToList();
+
+                ViewBag.NbrResults = storeFrontContext.Count;
+            }
+            else
+            {
+                ViewBag.NbrResults = null;
+                ViewBag.SearchTerm = null;
+            }
+
+
+
+            return View(storeFrontContext.ToPagedList(page, pageSize));
         }
 
 

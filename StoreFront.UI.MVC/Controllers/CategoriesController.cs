@@ -9,8 +9,10 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using StoreFront.DATA.EF.Models;
 
+
 namespace StoreFront.UI.MVC.Controllers
 {
+    [Keyless]
     [Authorize(Roles = "Admin")]
     public class CategoriesController : Controller
     {
@@ -29,132 +31,49 @@ namespace StoreFront.UI.MVC.Controllers
                           Problem("Entity set 'StoreFrontContext.Categories'  is null.");
         }
 
-        // GET: Categories/Details/5
-        public async Task<IActionResult> Details(int? id)
+        [AcceptVerbs("POST")]
+        public JsonResult AjaxDelete(int id)
         {
-            if (id == null || _context.Categories == null)
-            {
-                return NotFound();
-            }
+            Category category = _context.Categories.Find(id);
+            _context.Categories.Remove(category);
+            _context.SaveChanges();
 
-            var category = await _context.Categories
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
-            if (category == null)
-            {
-                return NotFound();
-            }
-
-            return View(category);
+            string confirmMessage = $"Deleted {category.CategoryName} from the database!";
+            return Json(new { id = id, message = confirmMessage });
         }
 
-        // GET: Categories/Create
-        public IActionResult Create()
+        public PartialViewResult CategoryDetails(int id)
         {
-            return View();
+            Category category = _context.Categories.Find(id);
+
+            return PartialView(category);
         }
 
-        // POST: Categories/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("CategoryId,CategoryName,Description")] Category category)
+        public JsonResult AjaxCreate(Category category)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(category);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(category);
+            _context.Categories.Add(category);
+            _context.SaveChanges();
+
+            return Json(category);
         }
 
-        // GET: Categories/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        [HttpGet]
+        public PartialViewResult CategoryEdit(int id)
         {
-            if (id == null || _context.Categories == null)
-            {
-                return NotFound();
-            }
-
-            var category = await _context.Categories.FindAsync(id);
-            if (category == null)
-            {
-                return NotFound();
-            }
-            return View(category);
+            Category category = _context.Categories.Find(id);
+            return PartialView(category);
         }
 
-        // POST: Categories/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("CategoryId,CategoryName,Description")] Category category)
+        public JsonResult AjaxEdit(Category category)
         {
-            if (id != category.CategoryId)
-            {
-                return NotFound();
-            }
+            _context.Update(category);
+            _context.SaveChanges();
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    _context.Update(category);
-                    await _context.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!CategoryExists(category.CategoryId))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            return View(category);
-        }
-
-        // GET: Categories/Delete/5
-        public async Task<IActionResult> Delete(int? id)
-        {
-            if (id == null || _context.Categories == null)
-            {
-                return NotFound();
-            }
-
-            var category = await _context.Categories
-                .FirstOrDefaultAsync(m => m.CategoryId == id);
-            if (category == null)
-            {
-                return NotFound();
-            }
-
-            return View(category);
-        }
-
-        // POST: Categories/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            if (_context.Categories == null)
-            {
-                return Problem("Entity set 'StoreFrontContext.Categories'  is null.");
-            }
-            var category = await _context.Categories.FindAsync(id);
-            if (category != null)
-            {
-                _context.Categories.Remove(category);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return Json(category);
         }
 
         private bool CategoryExists(int id)

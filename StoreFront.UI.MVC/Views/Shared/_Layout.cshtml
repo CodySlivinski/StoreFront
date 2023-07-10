@@ -25,6 +25,7 @@
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="~/css/core-style.css">
     <link rel="stylesheet" href="~/style.css">
+    <link rel="stylesheet" href="~/css/customStyles.css" /> 
 
 </head>
 
@@ -78,7 +79,7 @@
                 <ul>
                     <li class="active"><a href="~/">Home</a></li>
                     <li><a asp-action="TiledProducts" asp-controller="Products">Shop</a></li>
-                    <li><a asp-action="Index" asp-controller="Products">Cart</a></li>
+                    <li><a asp-action="Index" asp-controller="ShoppingCart">Cart</a></li>
 
                     @if (User.IsInRole("Admin"))
                     {
@@ -123,6 +124,7 @@
                     }
 
                     <partial name="_LoginPartial" />
+                    <li><a asp-action="Contact" asp-controller="Contact">Contact</a></li>
 
                 </ul>
             </nav>
@@ -149,7 +151,7 @@
                     <div class="single_widget_area">
                         <!-- Logo -->
                         <div class="footer-logo mr-50">
-                            <a href="/"><img src="~/img/core-img/logo2.png" alt=""></a>
+                            <a href="/"><img src="~/img/core-img/logo3.jpg" alt=""></a>
                         </div>
                         <!-- Copywrite Text -->
                         <p class="copywrite">
@@ -180,6 +182,12 @@
                                             <a class="nav-link" asp-action="Index"
                                                asp-controller="ShoppingCart">Cart</a>
                                         </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" asp-action="Contact"
+                                               asp-controller="Contact">Contact</a>
+                                        </li>
+                                        
                                         @if (User.IsInRole("Admin"))
                                         {
 

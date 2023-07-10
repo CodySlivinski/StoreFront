@@ -11,7 +11,7 @@ using StoreFront.DATA.EF.Models;
 
 namespace StoreFront.UI.MVC.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    
     public class OrdersController : Controller
     {
         private readonly StoreFrontContext _context;
@@ -72,6 +72,7 @@ namespace StoreFront.UI.MVC.Controllers
         }
 
         // GET: Orders/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Orders == null)
@@ -91,6 +92,7 @@ namespace StoreFront.UI.MVC.Controllers
         // POST: Orders/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("OrderId,CustomerId,OrderDate,ShipToName,ShipCity,ShipZip,ShipState,ShipCountry")] Order order)
@@ -125,6 +127,7 @@ namespace StoreFront.UI.MVC.Controllers
         }
 
         // GET: Orders/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Orders == null)
@@ -144,6 +147,7 @@ namespace StoreFront.UI.MVC.Controllers
         }
 
         // POST: Orders/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
