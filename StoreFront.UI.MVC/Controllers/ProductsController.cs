@@ -257,7 +257,7 @@ namespace StoreFront.UI.MVC.Controllers
                 string oldImageName = product.Image;
 
                 //Check if the user uploaded a file
-                if (product.Image != null)
+                if (product.ProductImage != null)
                 {
                     //Get the file's extension 
                     string ext = Path.GetExtension(product.ProductImage.FileName);
