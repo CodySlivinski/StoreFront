@@ -24,10 +24,10 @@ namespace StoreFront.DATA.EF.Models
         public int RestrictionId { get; set; }
         public string? Image { get; set; }
 
-        public virtual Category Category { get; set; } = null!;
-        public virtual ProductStatus ProductStatus { get; set; } = null!;
-        public virtual Restriction Restriction { get; set; } = null!;
-        public virtual Supplier Supplier { get; set; } = null!;
+        public virtual Category? Category { get; set; }
+        public virtual ProductStatus? ProductStatus { get; set; } 
+        public virtual Restriction? Restriction { get; set; } 
+        public virtual Supplier? Supplier { get; set; } 
         public virtual ICollection<ProductOrder> ProductOrders { get; set; }
     }
 }

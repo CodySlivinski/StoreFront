@@ -14,7 +14,7 @@ using X.PagedList;
 
 namespace StoreFront.UI.MVC.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    
     public class ProductsController : Controller
     {
         private readonly StoreFrontContext _context;
@@ -121,6 +121,7 @@ namespace StoreFront.UI.MVC.Controllers
         }
 
         // GET: Products/Create
+        [Authorize(Roles = "Admin")]
         public IActionResult Create()
         {
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName");
@@ -133,9 +134,10 @@ namespace StoreFront.UI.MVC.Controllers
         // POST: Products/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ProductId,Name,Description,CategoryId,Price,QuantityPerUnit,UnitsInStock,UnitsOnOrder,RestockLevel,ProductStatusId,SupplierId,RestrictionId,Image")] Product product)
+        public async Task<IActionResult> Create([Bind("ProductId,Name,Description,CategoryId,Price,QuantityPerUnit,UnitsInStock,UnitsOnOrder,RestockLevel,ProductStatusId,SupplierId,RestrictionId,Image,ProductImage")] Product product)
         {
             if (ModelState.IsValid)
             {
@@ -213,6 +215,7 @@ namespace StoreFront.UI.MVC.Controllers
         }
 
         // GET: Products/Edit/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null || _context.Products == null)
@@ -235,9 +238,10 @@ namespace StoreFront.UI.MVC.Controllers
         // POST: Products/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ProductId,Name,Description,CategoryId,Price,QuantityPerUnit,UnitsInStock,UnitsOnOrder,RestockLevel,ProductStatusId,SupplierId,RestrictionId,Image")] Product product)
+        public async Task<IActionResult> Edit(int id, [Bind("ProductId,Name,Description,CategoryId,Price,QuantityPerUnit,UnitsInStock,UnitsOnOrder,RestockLevel,ProductStatusId,SupplierId,RestrictionId,Image,ProductImage")] Product product)
         {
             if (id != product.ProductId)
             {
@@ -324,6 +328,7 @@ namespace StoreFront.UI.MVC.Controllers
         }
 
         // GET: Products/Delete/5
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null || _context.Products == null)
@@ -346,6 +351,7 @@ namespace StoreFront.UI.MVC.Controllers
         }
 
         // POST: Products/Delete/5
+        [Authorize(Roles = "Admin")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
